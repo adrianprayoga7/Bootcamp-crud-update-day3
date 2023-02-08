@@ -22,7 +22,7 @@ const loadContact = () => {
 const detailContact = nama => {
     const contacts = loadContact();
     console.log("Detail contact yang dicari: ");
-    const contact = contacts.find((contact) => contact.nama === nama);
+    const contact = contacts.find((contact) => contact.nama.toLowerCase() === nama.toLowerCase());
     if (!contact) {
         console.log((`${nama} tidak ditemukan!`));
         return false;
@@ -45,7 +45,7 @@ const listContact = () => {
 //tujuannya untuk hapus kontak berdasarkan nama
 const deleteContact = nama => {
     const contacts = loadContact();
-    const filterContact = contacts.filter((contact) => contact.nama !== nama);
+    const filterContact = contacts.filter((contact) => contact.nama.toLowerCase() !== nama.toLowerCase());
     fs.writeFileSync('data/contacts.json', JSON.stringify(filterContact));
     console.log("Contact Telah Dihapus!");
 }
